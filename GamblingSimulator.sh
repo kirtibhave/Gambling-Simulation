@@ -1,4 +1,4 @@
-#!/bin/bash  
+#!/bin/bash 
 echo "**********Welcome to Gambling Simulator Problem**********"
 
 #CONSTANTS
@@ -11,8 +11,8 @@ cash=$STAKE_PER_DAY
 declare -A dictionaryToCountMonths
 
 function calculatePercentage(){
-   MAXIMUM_RESULT=$(( (50*$STAKE_PER_DAY/100)+$STAKE_PER_DAY ))  
-   MINIMUM_RESULT=$(( (50*$STAKE_PER_DAY/100)-$STAKE_PER_DAY ))
+   MAXIMUM_RESULT=$(($STAKE_PER_DAY + (50*$STAKE_PER_DAY/100) ))  
+   MINIMUM_RESULT=$(($STAKE_PER_DAY - (50*$STAKE_PER_DAY/100) ))
 }
 calculatePercentage
 
@@ -31,16 +31,15 @@ function calculateGambler(){
          echo $totalCash
 }
 
-
 function calculateTotalAmount(){
 for ((day=1;day<=20;day++))
 do
    totalAmount=$((totalAmount + $(calculateGambler) ))
-   dictionaryToCountMonths[day$day]=$totalAmount
-done  
-echo "total amount is: $totalAmount"
-
-if [ $totalAmount -gt 0 ]
+	dictionaryToCountMonths[day$day]=$totalAmount
+	echo day$day ${dictionaryToCountMonths[day$day]} 
+done
+	echo $totalAmount
+if [ $totalAmount -ge 0 ]
 then
    echo "YOU WON,WOULD RESIGN FOR THE DAY"
 else
@@ -48,7 +47,6 @@ else
 fi
 }
 
-calculatePercentage
 calculateTotalAmount 
 
 
