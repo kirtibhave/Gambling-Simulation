@@ -39,14 +39,15 @@ do
 	echo day$day ${dictionaryToCountMonths[day$day]} 
 done
 	echo $totalAmount
-if [ $totalAmount -ge 0 ]
-then
-   echo "YOU WON,WOULD RESIGN FOR THE DAY"
-else
-   echo "YOU LOOSE,WOULD RESIGN FOR THE DAY"
-fi
 }
 
-calculateTotalAmount 
+function sorting(){
+for i in ${!dictionaryToCountMonths[@]}
+do
+	echo $i ${dictionaryToCountMonths[$i]}
+done 
+}
 
-
+calculateTotalAmount
+echo Luckiest day2 :: $(sorting | head -1 )
+echo Unluckiest day2 :: $(sorting | tail -1 )
