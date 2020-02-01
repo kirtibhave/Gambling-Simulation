@@ -45,9 +45,9 @@ function sorting(){
 for i in ${!dictionaryToCountMonths[@]}
 do
 	echo $i ${dictionaryToCountMonths[$i]}
-done 
+done | sort -rn -k2
 }
 
 calculateTotalAmount
-echo Luckiest day2 :: $(sorting | head -1 )
-echo Unluckiest day2 :: $(sorting | tail -1 )
+echo Luckiest day:: $(sorting | head -1 )
+echo Unluckiest day:: $(sorting | tail -1 )
